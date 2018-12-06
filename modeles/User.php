@@ -1,5 +1,7 @@
 <?php
 
+require_once('../db.php');
+
 class User
 {
     protected $id;
@@ -8,4 +10,9 @@ class User
     protected $email;
     protected $pass;
     protected $login;
+
+    public function addUser($firstName, $lastName, $email, $pass, $login)
+    {
+        $query = "";
+    }
 }

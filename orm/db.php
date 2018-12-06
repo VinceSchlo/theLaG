@@ -34,5 +34,3 @@ function myFetchAllAssoc($query)
         $tab_res[] = $array;
     return $tab_res;
 }
-
-$link = mysqli_connect('localhost', 'root', 'root', 'the_lag') or die(mysqli_connect_error());
