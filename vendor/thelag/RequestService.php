@@ -1,6 +1,6 @@
 <?php
 
-abstract class Table
+abstract class RequestService
 {
     public function hydrate()
     {

@@ -1,2 +1,4 @@
 .DS_STORE
 config/parameters.ini
+/vendor/*
+!/vendor/thelag/

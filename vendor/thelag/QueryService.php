@@ -1,6 +1,6 @@
 <?php
 
-$ini = parse_ini_file('../config/parameters.ini');
+$ini = parse_ini_file('config/parameters.ini');
 
 function myQuery($query)
 {

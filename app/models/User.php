@@ -1,6 +1,6 @@
 <?php
 
-require_once('../vendor/QueryService.php');
+require_once('../vendor/thelag/QueryService.php');
 
 class User
 {
