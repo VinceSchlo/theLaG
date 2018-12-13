@@ -4,3 +4,4 @@ config/parameters.ini
 !/vendor/thelag/
 /cache/*
 !/cache/.keep
+main.min.css

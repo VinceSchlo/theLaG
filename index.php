@@ -19,5 +19,6 @@ if (!empty($_GET['action'])) {
 if (array_key_exists($action, $routes))
     include('app/controllers/' . $routes[$action] . ".php");
 
+// var_dump($routes[$action]($action));
 $controller = new $routes[$action]($action);
 $controller->index();
