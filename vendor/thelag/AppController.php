@@ -10,11 +10,11 @@ Class AppController
 
     protected function loadTwig()
     {
-        $loader = new Twig_Loader_Filesystem('app/views');
+        $loader = new Twig_Loader_Filesystem('app/views/');
         $params = [
-            // 'cache' => "../cache",
+            'cache'       => 'cache',
             'auto_reload' => true,
-            'autoescape' => true
+            'autoescape'  => true
         ];
 
         $this->twig = new Twig_Environment($loader, $params);

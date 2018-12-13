@@ -27,7 +27,7 @@ class UserController extends AppController
                 break;
         }
         $this->loadTwig();
-        $this->twig->render('index.html.twig', [
+        echo $this->twig->render('index.html.twig', [
             'foo' => 'bar',
             'bar' => 'foo'
         ]);

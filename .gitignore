@@ -2,3 +2,5 @@
 config/parameters.ini
 /vendor/*
 !/vendor/thelag/
+/cache/*
+!/cache/.keep
