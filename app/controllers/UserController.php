@@ -1,8 +1,10 @@
 <?php
 
 require_once('vendor/thelag/AppController.php');
+require_once('../models/User.php');
 
-Class UserController extends AppController {
+class UserController extends AppController
+{
 
     public function index()
     {
@@ -15,6 +17,13 @@ Class UserController extends AppController {
                 break;
             // Connexion d'un utilisateur
             case "login":
+
+                $currentUser = new User;
+                $currentUser->login = $_GET['login'];
+                $currentUser->password = $_GET['password'];
+
+                $currentUser->loginUser();
+
                 break;
         }
         $this->loadTwig();
