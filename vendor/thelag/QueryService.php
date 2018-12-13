@@ -4,7 +4,7 @@ $ini = parse_ini_file('config/parameters.ini');
 
 function myQuery($query)
 {
-    global $link;
+    global $link, $ini;
 
     if (empty($link))
         $link = mysqli_connect($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']) or die(mysqli_connect_error());

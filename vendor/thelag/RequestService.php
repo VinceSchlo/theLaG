@@ -2,6 +2,9 @@
 
 abstract class RequestService
 {
+
+    protected static $table_name;
+
     public function hydrate()
     {
         if (empty($this->{$this->pk_field_name})) {
@@ -59,4 +62,11 @@ abstract class RequestService
         }
         myQuery(($query));
     }
+
+    public static function getAll()
+    {
+        $query ="SELECT * FROM ".static::$table_name;
+		$items = myFetchAllAssoc($query);
+		return $items;
+	}
 }

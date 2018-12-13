@@ -1,7 +1,7 @@
 <?php
 
 require_once('vendor/thelag/AppController.php');
-require_once('../models/User.php');
+require_once('app/models/User.php');
 
 class UserController extends AppController
 {
@@ -19,8 +19,8 @@ class UserController extends AppController
             case "login":
 
                 $currentUser = new User;
-                $currentUser->login = $_GET['login'];
-                $currentUser->password = $_GET['password'];
+                $currentUser->login = 'johrt0'; // get login
+                $currentUser->password = '1CYM874N'; // get pass
 
                 $currentUser->loginUser();
 
