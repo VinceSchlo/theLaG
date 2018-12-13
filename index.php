@@ -1,7 +1,7 @@
 <?php
 // Definition des routes
 $routes = [
-    'home' => 'UserController',
+    'home' => 'HomeController',
     'login' => 'UserController',
     // 'order_coaching' => 'CoachingController',
     // 'list_coaching' => 'CoachingController'
