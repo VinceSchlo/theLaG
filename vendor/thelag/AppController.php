@@ -14,7 +14,6 @@ Class AppController
         $params = [
             'cache'       => 'cache',
             'auto_reload' => true,
-            'autoescape'  => true
         ];
 
         $this->twig = new Twig_Environment($loader, $params);
