@@ -1,7 +1,14 @@
 .DS_STORE
 config/parameters.ini
+
 /vendor/*
+
 !/vendor/thelag/
+
 /cache/*
 !/cache/.keep
+
 main.min.css
+
+node_modules/
+.npm
