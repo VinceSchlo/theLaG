@@ -1,11 +1,13 @@
 <?php
 
+$ini = parse_ini_file('../config/parameters.ini');
+
 function myQuery($query)
 {
     global $link;
 
     if (empty($link))
-        $link = mysqli_connect('localhost', 'root', '', 'the_lag') or die(mysqli_connect_error());
+        $link = mysqli_connect($ini['db_host'], $ini['db_user'], $ini['db_password'], $ini['db_name']) or die(mysqli_connect_error());
     $result = mysqli_query($link, $query) or die(mysqli_error($link));
     return $result;
 }
