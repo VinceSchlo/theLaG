@@ -2,47 +2,61 @@
 
 abstract class Table
 {
-
     public function hydrate()
     {
-        // echo $this->{$this->pk_field_name};
         if (empty($this->{$this->pk_field_name})) {
             die('try to hydrate without PK');
         }
 
-        $query = "SELECT * FROM $this->table_name WHERE $this->pk_field_name  = " . $this->{$this->pk_field_name} . "";
+        $query = "SELECT * FROM ".$this->table_name." WHERE ".$this->pk_field_name."=".$this->{$this->pk_field_name};
 
         $result = myFetchAssoc(($query));
 
-        foreach ($this->field_list as $field) {
-            $this->{$field} = $result[$field];
+        foreach ($result as $key => $value){
+            $this->$key = $result[$key];
         }
     }
 
     public function save()
     {
-        $query = "SELECT * FROM $this->table_name WHERE $this->pk_field_name  = " . $this->{$this->pk_field_name} . "";
+        if (empty($this->{$this->pk_field_name}))
+        {
+            // $query = "INSERT INTO ".$this->table_name." SET ";
+            // $values = '';
+            // $fields = '';
 
-        $result = myFetchAssoc(($query));
+            // foreach ($this as $key => $value) {
+            //     $values .= $value.",";
+            //     $fields .= $key.",";
+            // }
 
-        if (!empty($result)) {
-            // update
-            echo 'update';
-            $stringSet = "";
-            foreach ($this->field_list as $field) {
+            // $this->{$this->pk_field_name};
+        }
+        else
+        {
+            $query = "UPDATE ".$this->table_name." SET ";
 
-                if ($this->{$field} != null) {
-                    $stringSet .= $field . " = '" . $this->{$field} . "', ";
+            $emptyRemoved = array_filter((array)$this);
+            end($emptyRemoved);
+            $last_key = key($emptyRemoved);
+
+            foreach ($this as $key => $value)
+            {
+                if (!is_null($value) && !in_array($key, ['pk_field_name', 'table_name', $this->pk_field_name]))
+                {
+                    if ($last_key == $key)
+                    {
+                        $query .= $key."="."'".$value."' ";
+                    }
+                    else
+                    {
+                        $query .= $key."="."'".$value."', ";
+                    }
                 }
-
             }
 
-            $query = "UPDATE $this->table_name SET $stringSet WHERE $this->pk_field_name = " . $this->{$this->pk_field_name} . "";
-            echo $query;
-        } else {
-            // insert
+            $query .= "WHERE ".$this->pk_field_name."=".$this->{$this->pk_field_name};
         }
-
+        myQuery(($query));
     }
-
 }
