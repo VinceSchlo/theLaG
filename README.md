@@ -18,4 +18,10 @@ Once it is done:
 npm i
 ```
 
+The project uses Sass, to run compiling on save: 
+
+```
+npm run dev
+```
+
 Now you're free to go 🤙🏼
