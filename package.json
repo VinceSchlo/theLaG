@@ -4,10 +4,11 @@
   "description": "Rework of the-lag.com",
   "main": "index.js",
   "scripts": {
-    "css-deploy": "npm run css-build && npm run css-postcss",
     "css-build": "node-sass app/src/scss/main.scss build/css/main.min.css --output-style compressed",
     "css-watch": "npm run css-build -- --watch",
-    "dev": "npm run css-build && npm run css-watch"
+    "js-watch": "babel app/src/js/main.js --no-babelrc --watch --out-file build/js/main.js",
+    "dev-css": "npm run css-build && npm run css-watch",
+    "dev-js": "npm run js-watch"
   },
   "repository": {
     "type": "git",

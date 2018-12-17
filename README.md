@@ -18,10 +18,18 @@ Once it is done:
 npm i
 ```
 
-The project uses Sass, to run compiling on save: 
+The project uses Sass and Babel, to run compiling on save you'll need to run two commands in two distinct terminals:
 
 ```
-npm run dev
+npm run dev-css
+```
+
+and
+
+```
+npm run dev-js
 ```
 
 Now you're free to go 🤙🏼
+
+In the end, a task manager will be integrated, allowing launching only one command for both js and css watch.
