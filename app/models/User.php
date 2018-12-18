@@ -14,11 +14,6 @@ class User extends RequestService
     public $firstname;
     public $lastname;
 
-    public function addUser($firstName, $lastName, $email, $pass, $login)
-    {
-        $query = "";
-    }
-
     public function getUser($user)
     {
         $user = new User();
@@ -32,12 +27,20 @@ class User extends RequestService
     {
         $query = "SELECT * FROM users WHERE login = '" . $this->login . "' AND password = '" . $this->password . "'";
 
-        var_dump($query);
+        $result = myFetchAssoc($query);
 
-        $user = myFetchAssoc($query);
+        $user = new User();
 
-        // var_dump($user);
+        $user->idusers = $result['idusers'];
+        $user->firstname = $result['firstname'];
+        $user->lastname = $result['lastname'];
 
-        var_dump($user);
+        return $user;
+    }
+
+    public function addUser(){
+        $query = "INSERT INTO users (login, password, email, firstname, lastname ) VALUES ( $this->login, $this->password,  $this->email, $this->firstname, $this->lastname,)";
+
+        myQuery($query);
     }
 }
