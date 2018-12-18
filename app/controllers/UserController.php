@@ -8,25 +8,37 @@ class UserController extends AppController
 
     public function index()
     {
+        $this->loadTwig();
+
         switch ($this->action) {
             // Ajout d'un nouvel utlisateur
             case "addUser":
                 break;
+
             // Changement des informations ( + suppression ? )
             case "updateUser":
+                
+
                 break;
+
             // Connexion d'un utilisateur
             case "login":
 
                 $currentUser = new User;
-                $currentUser->login = 'johrt0'; // get login
-                $currentUser->password = '1CYM874N'; // get pass
+                $currentUser->login = 'IV'; // get login
+                $currentUser->password = 'RP7BLOa'; // get pass
 
-                $currentUser->loginUser();
+                $response = $currentUser->loginUser();
+
+                // Renvoi sur la page d'accueil
+                echo $this->twig->render('index.html.twig', [
+                    'session' => $_SESSION,
+                    'response' => $response,
+                ]);
 
                 break;
         }
-        $this->loadTwig();
+        
         echo $this->twig->render('index.html.twig', [
             'foo' => 'bar',
             'bar' => 'foo'

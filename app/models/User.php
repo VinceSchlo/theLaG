@@ -36,8 +36,21 @@ class User extends RequestService
 
         $user = myFetchAssoc($query);
 
-        // var_dump($user);
+        if ($user != null){
+            $_SESSION['idUser'] = $user['idusers'];
+            $_SESSION['login'] = $user['login'];
+            $_SESSION['firstname'] = $user['firstname'];
+            $_SESSION['lastname'] = $user['lastname'];
 
-        var_dump($user);
+            return "sucess";
+        } else {
+            return "Mauvais login ou mot de passe";
+        }
+
+        // var_dump($_SESSION);
+    }
+
+    public function updateUser($id){
+        $query = "SELECT * FROM users WHERE login = '" . $this->login . "' AND password = '" . $this->password . "'";
     }
 }
