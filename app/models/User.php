@@ -27,20 +27,31 @@ class User extends RequestService
     {
         $query = "SELECT * FROM users WHERE login = '" . $this->login . "' AND password = '" . $this->password . "'";
 
-        $result = myFetchAssoc($query);
+        $user = myFetchAssoc($query);
 
-        $user = new User();
+        if ($user != null){
+            $_SESSION['idUser'] = $user['idusers'];
+            $_SESSION['login'] = $user['login'];
+            $_SESSION['firstname'] = $user['firstname'];
+            $_SESSION['lastname'] = $user['lastname'];
 
-        $user->idusers = $result['idusers'];
-        $user->firstname = $result['firstname'];
-        $user->lastname = $result['lastname'];
+            return "sucess";
+        } else {
+            return "Mauvais login ou mot de passe";
+        }
 
-        return $user;
     }
 
     public function addUser(){
-        $query = "INSERT INTO users (login, password, email, firstname, lastname ) VALUES ( $this->login, $this->password,  $this->email, $this->firstname, $this->lastname,)";
+        $query = "INSERT INTO users (login, password, email, firstname, lastname ) VALUES ( $this->login, $this->password,  $this->email, $this->firstname, $this->lastname)";
 
         myQuery($query);
+
+
+        // var_dump($_SESSION);
+    }
+
+    public function updateUser($id){
+        $query = "SELECT * FROM users WHERE login = '" . $this->login . "' AND password = '" . $this->password . "'";
     }
 }

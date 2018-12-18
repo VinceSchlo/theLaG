@@ -8,7 +8,6 @@ class UserController extends AppController
 
     public function index()
     {
-
         $this->loadTwig();
 
         switch ($this->action) {
@@ -29,16 +28,17 @@ class UserController extends AppController
 
             // Changement des informations ( + suppression ? )
             case "updateUser":
+                
+
                 break;
 
             // Connexion d'un utilisateur
             case "login":
 
-                $login = new User;
-                $login->login = 'johrt0'; // get login
-                $login->password = '1CYM874N'; // get pass
+                $currentUser = new User;
+                $currentUser->login = 'IV'; // get login
+                $currentUser->password = 'RP7BLOa'; // get pass
 
-                $currentUser = new User();
                 $currentUser = $login->loginUser();
 
                 if ($currentUser->idusers) {
@@ -47,14 +47,15 @@ class UserController extends AppController
                     $_SESSION['lastName'] = $currentUser->lastname;
                 }
 
+                // Renvoi sur la page d'accueil
                 echo $this->twig->render('index.html.twig', [
                     'session' => $_SESSION,
-                    'bar' => 'foo'
+                    'response' => $response,
                 ]);
 
                 break;
         }
-
+        
         echo $this->twig->render('index.html.twig', [
             'foo' => 'bar',
             'bar' => 'foo'

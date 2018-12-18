@@ -4,10 +4,10 @@
   "description": "Rework of the-lag.com",
   "main": "index.js",
   "scripts": {
-    "css-deploy": "npm run css-build && npm run css-postcss",
     "css-build": "node-sass app/src/scss/main.scss build/css/main.min.css --output-style compressed",
     "css-watch": "npm run css-build -- --watch",
-    "dev": "npm run css-build && npm run css-watch"
+    "js-watch": "babel app/src/js/*.js --no-babelrc --watch --out-file build/js/main.js",
+    "dev": "run-p css-watch js-watch"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/VinceSchlo/theLag#readme",
   "dependencies": {
-    "node-sass": "^4.11.0"
+    "babel-cli": "^6.26.0",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5"
   }
 }
