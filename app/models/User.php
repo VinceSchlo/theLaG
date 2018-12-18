@@ -43,7 +43,8 @@ class User extends RequestService
     }
 
     public function addUser(){
-        $query = "INSERT INTO users (login, password, email, firstname, lastname ) VALUES ( $this->login, $this->password,  $this->email, $this->firstname, $this->lastname)";
+        $query = "INSERT INTO users (login, password, email, firstname, lastname ) 
+                    VALUES ( $this->login, $this->password,  $this->email, $this->firstname, $this->lastname)";
 
         myQuery($query);
 
@@ -52,6 +53,14 @@ class User extends RequestService
     }
 
     public function updateUser($id){
-        $query = "SELECT * FROM users WHERE login = '" . $this->login . "' AND password = '" . $this->password . "'";
+        $query = "UPDATE table 
+                    SET login = $this->login, 
+                        password = $this->password, 
+                        email = $this->email, 
+                        firstname = $this->firstname, 
+                        lastname = $this->lastname
+                        WHERE idusers = $this->idusers";
+        
+        myQuery($query);
     }
 }
