@@ -14,7 +14,7 @@ class User extends RequestService
     public $firstname;
     public $lastname;
 
-    public function getUser($user)
+    public function getUser($id)
     {
         $user = new User();
 
@@ -35,7 +35,7 @@ class User extends RequestService
             $_SESSION['firstname'] = $user['firstname'];
             $_SESSION['lastname'] = $user['lastname'];
 
-            return "sucess";
+            return "Bienvenue";
         } else {
             return "Mauvais login ou mot de passe";
         }
@@ -47,9 +47,6 @@ class User extends RequestService
                     VALUES ( $this->login, $this->password,  $this->email, $this->firstname, $this->lastname)";
 
         myQuery($query);
-
-
-        // var_dump($_SESSION);
     }
 
     public function updateUser($id){

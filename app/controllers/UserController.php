@@ -13,9 +13,10 @@ class UserController extends AppController
         switch ($this->action) {
             // Ajout d'un nouvel utlisateur
             case "addUser":
-                $newUser = new User();
 
                 if ($_POST['add']) {
+                    $newUser = new User();
+
                     $newUser->login = $_POST['login'];
                     $newUser->password = $_POST['password'];
                     $newUser->email = $_POST['email'];
@@ -28,7 +29,18 @@ class UserController extends AppController
 
             // Changement des informations ( + suppression ? )
             case "updateUser":
-                
+
+                if ($_POST['update']) {
+                    $user = new User();
+
+                    $user->login = $_POST['login'];
+                    $user->password = $_POST['password'];
+                    $user->email = $_POST['email'];
+                    $user->firstname = $_POST['firstname'];
+                    $user->lastname = $_POST['lastname'];
+
+                    $user->updateUser();
+                }
 
                 break;
 
@@ -55,7 +67,7 @@ class UserController extends AppController
 
                 break;
         }
-        
+
         echo $this->twig->render('index.html.twig', [
             'foo' => 'bar',
             'bar' => 'foo'
