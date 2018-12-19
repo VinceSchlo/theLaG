@@ -1,0 +1,24 @@
+#slider-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    #slider-content {
+        height: 100%;
+        width: 100%;
+
+        .slider-item {
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    #slider-triggers {
+        position: absolute;
+        bottom: 0;
+        z-index: 1000;
+    }
+
+}

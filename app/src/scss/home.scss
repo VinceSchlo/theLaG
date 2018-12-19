@@ -7,6 +7,8 @@ $primary-color: #f2f2f2;
     .left-container, .right-container {
         width: 50%;
         height: 100%;
+        // overflow: hidden;
+        position: relative;
     }
 
     .left-container {
@@ -25,7 +27,6 @@ $primary-color: #f2f2f2;
             background-repeat: no-repeat;
             height: calc(100%/3);
             width: 50%;
-            background-image: url('https://picsum.photos/2500/1600/?random');
         }
 
         .article-full-width {
@@ -34,6 +35,8 @@ $primary-color: #f2f2f2;
 
         .article-v-splitted {
             height: 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
 
             .title {
                 //TODO: to override titles style in vertically splitted article, perhaps rework those classes
