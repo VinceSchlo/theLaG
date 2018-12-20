@@ -8,6 +8,12 @@ config/parameters.ini
 /cache/*
 !/cache/.keep
 
+/build/css/*
+!/build/css/.keep
+
+/build/js/*
+!/build/js/.keep
+
 main.min.css
 
 node_modules/
