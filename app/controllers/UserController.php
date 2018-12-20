@@ -44,22 +44,24 @@ class UserController extends AppController
             case "login":
                 if (!isset($_SESSION['idusers']))
                 {
-                    if(isset($_POST))
+                    if(!empty($_POST))
                     {
-                        $currentUser           = new User;
-                        $currentUser->login    = 'IVE';
-                        $currentUser->password = 'RP7BLOa';
+                        if (!empty($_POST['login']) && !empty($_POST['password']))
+                        {
+                            $currentUser           = new User;
+                            $currentUser->login    = $_POST['login'];
+                            $currentUser->password = $_POST['password'];
 
-                        try {
-                            $currentUser->loginUser();
-                        } catch (Exception $e) {
-                            $response = 'Exception reçue : ' .  $e->getMessage() . "\n";
-                        }
+                            try {
+                                $currentUser->loginUser();
+                            } catch (Exception $e) {
+                                $response = $e->getMessage();
+                            }
+                        } else
+                            $response = 'Veuillez remplir tous les champs';
                     }
-                    else
-                        $response = 'Veuillez completer les champs';
 
-                    echo $this->twig->render('login.html.twig', [
+                    echo $this->twig->render('login/login.html.twig', [
                         'response' => isset($response) ? $response : null,
                     ]);
                 }

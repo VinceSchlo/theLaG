@@ -6,7 +6,7 @@ Class AppController
     function __construct($action)
     {
         $this->action = $action;
-        $this->currentUrl = basename($_SERVER['REQUEST_URI']);
+        $this->currentUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     }
 
     protected function loadTwig()
