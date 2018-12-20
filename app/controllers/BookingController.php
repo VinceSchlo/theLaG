@@ -3,6 +3,7 @@
 require_once('vendor/thelag/AppController.php');
 require_once('app/models/User.php');
 require_once('app/models/Availability.php');
+require_once('app/models/Session.php');
 
 class BookingController extends AppController
 {
@@ -14,9 +15,15 @@ class BookingController extends AppController
         switch ($this->action) {
             // Ajout d'un nouvel utlisateur
             case 'booking': 
+
+
+                $availability = new Availability();
+                $availability->getAvailability($_GET['id']);
+
+                var_dump($availability);
+
                 echo $this->twig->render('booking/booking.html.twig', [
-                    'foo' => 'bar',
-                    'bar' => 'foo'
+                    
                 ]);
 
                 break;
@@ -28,8 +35,19 @@ class BookingController extends AppController
 
                     $date = $_GET['year'] . '-' . $_GET['month'] . '-' . $_GET['day'];
 
-                    $availabilitie = new Availabilitie();
+                    $availabilitie = new Availability();
                     $allAvailabilities = $availabilitie->getAvailabilitiesByDate($date);
+
+                    var_dump($allAvailabilities);
+
+                    echo $this->twig->render('availabilities/availabilities.html.twig', [
+                        'nowDate' => getdate(),
+                        'days' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+                        'months' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                        'years' => [2018, 2019, 2020],
+                        'allAvailabilities' => $allAvailabilities,
+                    ]);
+                    break;
 
                 }
 
@@ -39,7 +57,6 @@ class BookingController extends AppController
                     'days' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
                     'months' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                     'years' => [2018, 2019, 2020],
-                    'allAvailabilities' => $allAvailabilities,
                 ]);
 
                 break;
