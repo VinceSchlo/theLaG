@@ -12,20 +12,33 @@ class AvailabilityController extends AppController
         switch ($this->action)
         {
             case 'availability':
+                if (!empty($_GET['id']))
+                {
+                    $contentId = $_GET['id'];
+                    $availability   = new Availability();
+                    $availability->getAvailability($contentId);
 
-            if (!empty($_GET['id']))
-            {
-                $contentId = $_GET['id'];
-                $availability   = new Availability();
-                $availability->getAvailability($contentId);
-
-                echo $this->twig->render('index.html.twig', [
-                    'availability'  => $availability,
-                ]);
+                    echo $this->twig->render('index.html.twig', [
+                        'availability'  => $availability,
+                    ]);
+                } else {
+                    http_response_code(404);
+                }
                 break;
-            } else {
-                http_response_code(404);
-            }
+
+            case 'addAvailability':
+                if ($_POST['add'])
+                {
+                    $newAvailability = new Availability();
+                    $newAvailability->users_idusers = 2;
+
+                    foreach ($_POST as $key => $value)
+                        $newAvailability->$key = $value;
+
+                    $newAvailability->save();
+                }
+
+                break;
         }
     }
 }
