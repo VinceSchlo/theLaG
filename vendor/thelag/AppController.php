@@ -6,9 +6,9 @@ Class AppController
     function __construct($action)
     {
         session_start();
-        $this->action = $action;
+        $this->action     = $action;
         $this->currentUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-        $this->baseUrl = 'http://' . $_SERVER['SERVER_NAME'];
+        $this->baseUrl    = 'http://' . $_SERVER['SERVER_NAME'];
     }
 
     protected function loadTwig()

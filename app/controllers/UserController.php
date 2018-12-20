@@ -12,18 +12,52 @@ class UserController extends AppController
 
         switch ($this->action)
         {
+            case "user":
+                $contentId = $_GET['id'];
+                $user      = new User();
+                $user->getUser($contentId);
+
+                echo $this->twig->render('user/user.html.twig', [
+                    'user' => $user,
+                ]);
+                break;
             // Add new user
-            case "registration":
-
-                if (!empty($_POST))
+            case "register":
+                if (!isset($_SESSION['idusers']))
                 {
-                    $newUser = new User();
+                    if (!empty($_POST))
+                    {
+                        $newUser  = new User();
+                        $hasError = false;
 
-                    foreach ($_POST as $key => $value)
-                        $newUser->$key = $value;
+                        if ($_POST['password'] != $_POST['password_confirm']) {
+                            $hasError = true;
+                            $reponse  = 'Les deux mots passes doivent être identiques';
+                        }
 
-                    $newUser->save();
+                        foreach ($_POST as $key => $value)
+                        {
+                            if (empty($value)) {
+                                $hasError = true;
+                            } elseif(!in_array($key, ['password_confirm'])) {
+                                $newUser->$key = $value;
+                            }
+                        }
+
+                        if ($hasError === false)
+                        {
+                            $newUser->save();
+                            header('Location: index.php');
+                            die();
+                        }
+                        else
+                            $response = 'Veuillez remplir tous les champs';
+
+                    }
                 }
+                echo $this->twig->render('register/register.html.twig', [
+                    'response' => isset($response) ? $response : null,
+                ]);
                 break;
 
             // Changement des informations ( + suppression ? )
@@ -37,32 +71,7 @@ class UserController extends AppController
 
                     $user->save();
                 }
-
-                // voir profil
-                case "user":
-
-
-                        echo $this->twig->render('user/user.html.twig', [
-
-                        ]);
-
-                    
-                    break;
-
                 break;
-
-                case "registration":
-
-                    if (!empty($_POST))
-                    {
-                        $newUser = new User();
-
-                        foreach ($_POST as $key => $value)
-                            $newUser->$key = $value;
-
-                        $newUser->save();
-                    }
-                    break;
             // Connexion d'un utilisateur
             case "login":
                 if (!isset($_SESSION['idusers']))
@@ -95,8 +104,8 @@ class UserController extends AppController
                     header('Location: index.php');
                     exit;
                 }
-
                 break;
+
             case 'disconnect':
                 if (isset($_SESSION['idusers']))
                     session_destroy();
