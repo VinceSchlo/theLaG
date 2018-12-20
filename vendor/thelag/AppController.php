@@ -6,7 +6,7 @@ Class AppController
     function __construct($action)
     {
         $this->action = $action;
-        $this->current_url = basename($_SERVER['REQUEST_URI']);
+        $this->currentUrl = basename($_SERVER['REQUEST_URI']);
     }
 
     protected function loadTwig()
@@ -18,5 +18,8 @@ Class AppController
         ];
 
         $this->twig = new Twig_Environment($loader, $params);
+
+        // Add global parameters to all twig views
+        $this->twig->addGlobal('current_url', $this->currentUrl);
     }
 }
