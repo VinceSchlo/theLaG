@@ -27,7 +27,7 @@ class AvailabilityController extends AppController
                 break;
 
             case 'addAvailability':
-                if ($_POST['add'])
+                if (!empty($_POST['add']))
                 {
                     $newAvailability = new Availability();
                     $newAvailability->users_idusers = 2;

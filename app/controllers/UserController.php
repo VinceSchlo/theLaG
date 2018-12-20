@@ -14,7 +14,7 @@ class UserController extends AppController
             // Add new user
             case "addUser":
 
-                if ($_POST['add'])
+                if (!empty($_POST['add']))
                 {
                     $newUser = new User();
 
@@ -28,7 +28,7 @@ class UserController extends AppController
             // Changement des informations ( + suppression ? )
             case "updateUser":
 
-                if ($_POST['update'])
+                if (!empty($_POST['update']))
                 {
                     $user = new User();
 
