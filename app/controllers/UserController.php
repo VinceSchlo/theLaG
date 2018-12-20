@@ -38,8 +38,31 @@ class UserController extends AppController
                     $user->save();
                 }
 
+                // voir profil
+                case "user":
+
+
+                        echo $this->twig->render('user/user.html.twig', [
+
+                        ]);
+
+                    
+                    break;
+
                 break;
 
+                case "registration":
+
+                    if (!empty($_POST))
+                    {
+                        $newUser = new User();
+
+                        foreach ($_POST as $key => $value)
+                            $newUser->$key = $value;
+
+                        $newUser->save();
+                    }
+                    break;
             // Connexion d'un utilisateur
             case "login":
                 if (!isset($_SESSION['idusers']))

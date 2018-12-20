@@ -18,6 +18,7 @@ $routes = [
     'disconnect'   => 'UserController',
     'registration' => 'UserController',
     'updateUser'   => 'UserController',
+    'user'   => 'UserController',
 
     // 'list_coaching' => 'CoachingController'
     // 'order_coaching' => 'CoachingController',
