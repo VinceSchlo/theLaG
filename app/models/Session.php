@@ -5,8 +5,8 @@ require_once('vendor/thelag/RequestService.php');
 
 class Session extends RequestService
 {
-    public static $table_name = "sessions";
-    public $pk_field_name = "idsession";
+    protected $table_name = "sessions";
+    protected $pk_field_name = "idsession";
     public $idsession;
     public $start;
     public $end;
@@ -17,11 +17,19 @@ class Session extends RequestService
 
     public function getSession($id)
     {
-        $session = new Session();
+        $this->idsession = $id;
 
-        $session->idsession = $id;
+        $this->hydrate();
+    }
 
-        $session->hydrate();
+    public function addSession($start, $end, $participant_id, $coach_id, $games_idgames, $availabilities_idavailabilities)
+    {
+
+        $query = "INSERT INTO sessions (start, end, participant_id, coach_id, games_idgames, availabilities_idavailabilities ) 
+                    VALUES ($start, $end, $participant_id, $coach_id, $games_idgames, $availabilities_idavailabilities)";
+
+        $query->save();
+
     }
 
 }

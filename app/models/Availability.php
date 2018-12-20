@@ -30,6 +30,17 @@ class Availability extends RequestService
         $result = myFetchAllAssoc($query);
 
         if (!empty($result)) {
+
+            foreach ($result as $key => $value){
+                $idUser = $value["users_idusers"];
+
+                $query = "SELECT firstname, lastname FROM users WHERE idusers = '" . $idUser . "'";
+
+                $user = myFetchAssoc($query);
+
+                $result[$key]['user'] = $user;
+            }
+
             return $result;
         } else {
             return "Aucun résultat";
