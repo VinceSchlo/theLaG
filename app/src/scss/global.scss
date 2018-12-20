@@ -1,15 +1,51 @@
 $primary-color: #f2f2f2;
 
-* {
-    box-sizing: border-box;
+/* RESET */
+body {
+    font: 16px sans-serif;
+    /* 16px * 62.5% = 1.000 */
+    margin: 0;
 }
 
-body, html {
+body,
+html {
     margin: 0;
     height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+blockquote,
+address {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+    font-weight: 100;
+}
+
+a,
+abbr {
+    text-decoration: none;
+    color: rgba(200, 0, 0, 1);
+}
+
+abbr {
+    color: #222;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 main {
     height: 100%;
 }
-// TODO: font-family, mixin for font-size, reset
+
+// TODO: font-family, mixin for font-size
