@@ -5,6 +5,7 @@ $routes = [
 
     'availabilities' => 'BookingController',
     'booking'        => 'BookingController',
+    'payment'        => 'BookingController',
 
     'login' => 'LoginController',
 
