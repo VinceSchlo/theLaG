@@ -13,7 +13,7 @@
         
         form {
             margin-top: 20px;
-            
+
             .form-item-container {
                 width: 800px;
                 margin: 0 auto;
@@ -22,8 +22,10 @@
             }
 
             .form-item {
-                background-color: $gris;
+                background-color: $beige;
                 display: inline-block;
+                padding: 15px;
+                border-radius: 3px;
             }
 
             .form-button-container {
