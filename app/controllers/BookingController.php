@@ -22,8 +22,9 @@ class BookingController extends AppController
 
             case 'availabilities': 
                 echo $this->twig->render('availabilities/availabilities.html.twig', [
+                    'nowDate' => getdate(),
                     'days' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-                    'Months' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                    'months' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                     'years' => [2018, 2019, 2020]
                 ]);
 
