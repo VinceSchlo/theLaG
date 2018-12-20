@@ -27,26 +27,37 @@ abstract class RequestService
 
     public function save()
     {
+        $emptyRemoved = array_filter((array)$this);
+        end($emptyRemoved);
+        $last_key = key($emptyRemoved);
+
         if (empty($this->{$this->pk_field_name}))
         {
-            // $query = "INSERT INTO ".$this->table_name." SET ";
-            // $values = '';
-            // $fields = '';
+            $values = '';
+            $fields = '';
 
-            // foreach ($this as $key => $value) {
-            //     $values .= $value.",";
-            //     $fields .= $key.",";
-            // }
+            foreach ($this as $key => $value)
+            {
+                if (!is_null($value) && !in_array($key, ['pk_field_name', 'table_name', $this->pk_field_name]))
+                {
+                    if ($last_key == $key)
+                    {
+                        $values .= $value;
+                        $fields .= $key;
+                    }
+                    else
+                    {
+                        $values .= $value.",";
+                        $fields .= $key.",";
+                    }
+                }
+            }
 
-            // $this->{$this->pk_field_name};
+            $query = "INSERT INTO ".$this->table_name." (".$fields.") VALUES (".$values.")";
         }
         else
         {
             $query = "UPDATE ".$this->table_name." SET ";
-
-            $emptyRemoved = array_filter((array)$this);
-            end($emptyRemoved);
-            $last_key = key($emptyRemoved);
 
             foreach ($this as $key => $value)
             {
