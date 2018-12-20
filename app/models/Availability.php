@@ -21,4 +21,18 @@ class Availabilitie extends RequestService
         $availabilitie->hydrate();
     }
 
+    public function getAvailabilitiesByDate($date)
+    {
+        $query = "SELECT * FROM availabilities WHERE start LIKE '" . $date . "%'";
+
+        $result = myFetchAllAssoc($query);
+
+        if (!empty($result)) {
+            return $result;
+        } else {
+            return "Aucun résultat";
+        }
+    
+    }
+
 }

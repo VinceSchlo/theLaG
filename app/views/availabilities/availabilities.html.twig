@@ -4,6 +4,9 @@
     <div id="availabilities">
 
         <form action="" method="get">
+        
+            <input name="action" type="hidden" value="availabilities">
+
             <select name="day" id="day">
                 {% for day in days %}
                     {% if nowDate["mday"] == day %}
@@ -33,6 +36,7 @@
                     {% endif %}
                 {% endfor %}
             </select>
+            <button type="submit"> Submit </button>
         </form>
     <div>
 {% endblock %}
