@@ -48,4 +48,70 @@ main {
     height: 100%;
 }
 
-// TODO: font-family, mixin for font-size
+// Global
+
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:300,400,600');
+
+$bleu-fonce:#2c314f;
+$bleu-claire:#6ec8df;
+$beige:#efeee9;
+$gris:#aaaaaa;
+$noir:#1b1d29;
+
+body {
+    font-family: 'Lato';
+    color:#5f5f5f;
+}
+
+h1,
+h2,
+h3,
+h4
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    color:$noir;
+}
+
+h1 {
+    font-size:36px;
+}
+h2 {
+    font-size:24px;
+}
+h3 {
+    font-size:21px;
+}
+h4 {
+    font-size:18px;
+    color: $bleu-claire;
+}
+
+a {
+    font-weight: 600;
+    color:$bleu-claire;
+}
+strong {
+    font-weight: 600;
+}
+
+blockquote {
+    font-family: 'Montserrat', sans-serif;
+    color:$bleu-claire;
+    font-size: 18px;
+}
+
+li {
+    list-style: none;
+    &:before {
+        content: '•';
+    }
+}
+
+.is-light {
+    color:white;
+    h2 {
+        color:white;
+    }
+}

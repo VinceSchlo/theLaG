@@ -3,19 +3,19 @@ $primary-color: #f2f2f2;
 #home {
     height: 100%;
     overflow: hidden;
-    
+
     .left-container, .right-container {
         width: 50%;
         height: 100%;
         // overflow: hidden;
         position: relative;
     }
-
+    
     .left-container {
         display: inline-block;
         vertical-align: top;
     }
-    
+
     .right-container {
         display: inline-block;
         vertical-align: top;
@@ -24,22 +24,64 @@ $primary-color: #f2f2f2;
             vertical-align: top;
             display: inline-block;
             background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             height: calc(100%/3);
             width: 50%;
+            h2 {
+                padding: 5% 0 1.5% 5%;
+            }
+            span {
+                padding: 0 5% 0 5%;
+            }
+            img {
+                max-width: 50%;
+                max-height: 50%;
+                padding: 10%;
+            }
+            &:nth-child(4) {
+                text-align:center;
+            }
+            &:nth-child(5) {
+                background-image: linear-gradient(to top, #6ec8df 0%, #4196ac 100%);
+                text-align:center;
+                img {
+                    max-width: 90%;
+                    max-height: 50%;
+                    padding: 2%;
+                }
+            }
         }
 
         .article-full-width {
             width: 100%;
+            background-color: #efeee9;
         }
 
         .article-v-splitted {
             height: 50%;
             background-size: cover;
             background-repeat: no-repeat;
+            text-align: center;
+            padding: 3%;
 
             .title {
                 //TODO: to override titles style in vertically splitted article, perhaps rework those classes
+            }
+            img {
+                max-width: 90%;
+                max-height: 80%;
+                margin-bottom: -0.7em;
+                padding: 0;
+            }
+            &:first-child {
+                background-image: linear-gradient(to top, #6ec8df 0%, #4196ac 100%);
+            }
+            &:last-child {
+                background-color: #efeee9;
+                img {
+                    margin-bottom: 0em;
+                }
             }
         }
     }
