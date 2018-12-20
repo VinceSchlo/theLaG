@@ -10,5 +10,31 @@
 
     .content {
         padding-top: 80px;
+        
+        form {
+            margin-top: 20px;
+
+            .form-item-container {
+                width: 800px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .form-item {
+                background-color: $beige;
+                display: inline-block;
+                padding: 15px;
+                border-radius: 3px;
+            }
+
+            .form-button-container {
+                margin-top: 20px;
+            }
+        }
+        input{
+            width: initial;
+            display: inline-block;
+        }
     }
 }

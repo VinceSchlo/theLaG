@@ -2,9 +2,12 @@
 
 {% block content %}
     <div id="availabilities">
+        <section>
+            <h1>Trouve un créneau qui te convient</h1>
+        </section><br><br>
 
         <form action="" method="get">
-        
+
             <input name="action" type="hidden" value="availabilities">
 
             <select name="day" id="day">
@@ -16,7 +19,7 @@
                     {% endif %}
                 {% endfor %}
             </select>
-            
+
             <select name="month" id="month">
                 {% for month in months %}
                     {% if nowDate["mon"] == month %}
@@ -26,7 +29,7 @@
                     {% endif %}
                 {% endfor %}
             </select>
-    
+
             <select name="year" id="year">
                 {% for year in years %}
                     {% if nowDate["year"] == year %}
@@ -38,6 +41,17 @@
             </select>
             <button type="submit"> Submit </button>
         </form>
+
+        {% for availability in allAvailabilities %}
+        <a href="./?action=booking&id={{availability.idavailabilities}}">
+            <div class="case">
+            {{availability.start}}<br>
+            {{availability.end}}<br>
+            {{availability.user.firstname}}
+        </div></a>
+
+
+        {% endfor %}
     <div>
 {% endblock %}
 
