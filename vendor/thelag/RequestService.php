@@ -79,10 +79,10 @@ abstract class RequestService
         myQuery(($query));
     }
 
-    public static function getAll()
+    public function getAll()
     {
-        $query ="SELECT * FROM ".static::$table_name;
-		$items = myFetchAllAssoc($query);
-		return $items;
-	}
+        $query = "SELECT * FROM ".$this->table_name;
+        $items = myFetchAllAssoc($query);
+        return $items;
+    }
 }
