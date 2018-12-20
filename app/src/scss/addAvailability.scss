@@ -1,0 +1,14 @@
+#addAvailability {
+    .jumbotron {
+        height: 25vh;
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $beige;
+    }
+
+    .content {
+        padding-top: 80px;
+    }
+}

@@ -1,0 +1,85 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+    <div id="addAvailability">
+        <section class="jumbotron">
+            <h1>Deviens coach, ajoute tes disponibilités</h1>
+        </section>
+        
+        <section class="content">
+            <form action="" method="get" class="text-center">
+
+                <input name="action" type="hidden" value="availability">
+
+                <select name="day" id="day">
+                    {% for day in days %}
+                        {% if nowDate["mday"] == day %}
+                            <option value="{{ day }}" selected>{{ day }}</option>
+                        {% else %}
+                            <option value="{{ day }}">{{ day }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <select name="month" id="month">
+                    {% for month in months %}
+                        {% if nowDate["mon"] == month %}
+                            <option value="{{ month }}" selected>{{ month }}</option>
+                        {% else %}
+                            <option value="{{ month }}">{{ month }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <select name="year" id="year">
+                    {% for year in years %}
+                        {% if nowDate["year"] == year %}
+                            <option value="{{ year }}" selected>{{ year }}</option>
+                        {% else %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+
+                <br>
+                <br>
+
+                <label for="start">Heure de début: </label>
+                <select name="start" id="start">
+                    {% for hour in hours %}
+                        {% if nowDate["hours"] == hour %}
+                            <option value="{{ hour }}" selected>{{ hour }}</option>
+                        {% else %}
+                            <option value="{{ hour }}">{{ hour }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <br>
+                <br>
+
+                <label for="end">Heure de fin:</label>
+                <select name="end" id="end">
+                    {% for hour in hours %}
+                        {% if nowDate["hours"] + 1 == hour %}
+                            <option value="{{ hour }}" selected>{{ hour }}</option>
+                        {% else %}
+                            <option value="{{ hour }}">{{ hour }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <br>
+                <br>
+
+                <button type="submit"> Submit </button>
+            </form>
+        </section>
+
+    <div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
