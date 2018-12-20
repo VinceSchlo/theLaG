@@ -5,8 +5,8 @@ require_once('vendor/thelag/RequestService.php');
 
 class User extends RequestService
 {
-    public static $table_name = "users";
-    public $pk_field_name = "idusers";
+    protected $table_name = "users";
+    protected $pk_field_name = "idusers";
     public $idusers;
     public $login;
     public $password;
@@ -16,11 +16,9 @@ class User extends RequestService
 
     public function getUser($id)
     {
-        $user = new User();
+        $this->idusers = $id;
 
-        $user->idusers = $id;
-
-        $user->hydrate();
+        $this->hydrate();
     }
 
     public function loginUser()

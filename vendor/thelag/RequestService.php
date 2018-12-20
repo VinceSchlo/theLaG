@@ -2,9 +2,6 @@
 
 abstract class RequestService
 {
-
-    protected static $table_name;
-
     public function hydrate()
     {
         if (empty($this->{$this->pk_field_name})) {
@@ -13,10 +10,18 @@ abstract class RequestService
 
         $query = "SELECT * FROM ".$this->table_name." WHERE ".$this->pk_field_name."=".$this->{$this->pk_field_name};
 
-        $result = myFetchAssoc(($query));
+        $result = myFetchAssoc($query);
 
-        foreach ($result as $key => $value){
-            $this->$key = $result[$key];
+        if (!empty($result))
+        {
+            foreach ($result as $key => $value){
+                $this->$key = $result[$key];
+            }
+        }
+        else
+        {
+            http_response_code(404);
+            die();
         }
     }
 

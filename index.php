@@ -4,7 +4,12 @@ $routes = [
     'home' => 'HomeController',
     'login' => 'UserController',
     'availabilities' => 'BookingController',
-    'booking' => 'BookingController'
+    'booking' => 'BookingController',
+
+    'availability'       => 'AvailabilityController',
+    'addAvailability'    => 'AvailabilityController',
+    'updateAvailability' => 'AvailabilityController',
+
     // 'list_coaching' => 'CoachingController'
     // 'order_coaching' => 'CoachingController',
 ];

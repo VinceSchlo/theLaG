@@ -61,10 +61,5 @@ class UserController extends AppController
 
                 break;
         }
-
-        echo $this->twig->render('index.html.twig', [
-            'foo' => 'bar',
-            'bar' => 'foo',
-        ]);
     }
 }
