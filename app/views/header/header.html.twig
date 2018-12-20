@@ -1,5 +1,20 @@
 <div id="header">
+    <a href="./" title="Acceuil">
+        <img src="./app/src/img/LogoNoirTransparent.png" alt="Logo The Lag" class="header-logo">
+    </a>
     <nav>
-        Super Header
+        <a href="./" {% if current_action == 'null' %}class="active"{% endif %}>Acceuil</a>
+        <a href="./?action=availabilities" {% if current_action == 'availabilities' %}class="active"{% endif %}>Annonces</a>
+        <a href="./?action=faq" {% if current_action == 'faq' %}class="active"{% endif %}>FAQ</a>
+        <a href="./?action=games" {% if current_action == 'games' %}class="active"{% endif %}>Jeux</a>
+        <a href="./?action=coaches" {% if current_action == 'coaches' %}class="active"{% endif %}>Coach</a>
     </nav>
+    <aside>
+        <a href="./" title="Recherche">loupe</a>
+        {% if session %}
+            <a href="./?action=login" title="profil">user</a>
+        {% else %}
+            <a href="./?action=login" title="Connexion">login</a>
+        {% endif %}
+    </aside>
 </div>

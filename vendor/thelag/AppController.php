@@ -21,5 +21,6 @@ Class AppController
 
         // Add global parameters to all twig views
         $this->twig->addGlobal('current_url', $this->currentUrl);
+        $this->twig->addGlobal('current_action', $this->action);
     }
 }
