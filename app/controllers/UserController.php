@@ -21,7 +21,7 @@ class UserController extends AppController
                     foreach ($_POST as $key => $value)
                         $newUser->$key = $value;
 
-                    $newUser->addUser();
+                    $newUser->save();
                 }
                 break;
 
@@ -33,9 +33,9 @@ class UserController extends AppController
                     $user = new User();
 
                     foreach ($_POST as $key => $value)
-                        $newUser->$key = $value;
+                        $user->$key = $value;
 
-                    $user->updateUser();
+                    $user->save();
                 }
 
                 break;
