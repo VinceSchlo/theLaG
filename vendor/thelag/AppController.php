@@ -5,14 +5,13 @@ Class AppController
 {
     function __construct($action)
     {
+        session_start();
         $this->action = $action;
         $this->currentUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     }
 
     protected function loadTwig()
     {
-        session_start();
-
         $loader = new Twig_Loader_Filesystem('app/views/');
         $params = [
             'cache'       => 'cache',
@@ -25,7 +24,7 @@ Class AppController
         $this->twig->addGlobal('current_url', $this->currentUrl);
         $this->twig->addGlobal('current_action', $this->action);
 
-        if (!isset($_SESSION['idusers']))
+        if (isset($_SESSION['idusers']))
         {
             $this->twig->addGlobal('current_session', $_SESSION);
         }

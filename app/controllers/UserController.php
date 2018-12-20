@@ -13,9 +13,9 @@ class UserController extends AppController
         switch ($this->action)
         {
             // Add new user
-            case "addUser":
+            case "registration":
 
-                if (!empty($_POST['add']))
+                if (!empty($_POST))
                 {
                     $newUser = new User();
 
@@ -54,6 +54,8 @@ class UserController extends AppController
 
                             try {
                                 $currentUser->loginUser();
+                                header('Location: index.php');
+                                exit;
                             } catch (Exception $e) {
                                 $response = $e->getMessage();
                             }
@@ -65,17 +67,19 @@ class UserController extends AppController
                         'response' => isset($response) ? $response : null,
                     ]);
                 }
+                else
+                {
+                    header('Location: index.php');
+                    exit;
+                }
 
                 break;
             case 'disconnect':
                 if (isset($_SESSION['idusers']))
                     session_destroy();
+                    header('Location: index.php');
+                    exit;
                 break;
         }
-
-        echo $this->twig->render('home/home.html.twig', [
-            'foo' => 'bar',
-            'bar' => 'foo'
-        ]);
     }
 }
