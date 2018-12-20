@@ -11,17 +11,15 @@ class UserController extends AppController
         $this->loadTwig();
 
         switch ($this->action) {
-            // Ajout d'un nouvel utlisateur
+            // Add new user
             case "addUser":
 
-                if ($_POST['add']) {
+                if ($_POST['add'])
+                {
                     $newUser = new User();
 
-                    $newUser->login = $_POST['login'];
-                    $newUser->password = $_POST['password'];
-                    $newUser->email = $_POST['email'];
-                    $newUser->firstname = $_POST['firstname'];
-                    $newUser->lastname = $_POST['lastname'];
+                    foreach ($_POST as $key => $value)
+                        $newUser->$key = $value;
 
                     $newUser->addUser();
                 }
@@ -30,14 +28,12 @@ class UserController extends AppController
             // Changement des informations ( + suppression ? )
             case "updateUser":
 
-                if ($_POST['update']) {
+                if ($_POST['update'])
+                {
                     $user = new User();
 
-                    $user->login = $_POST['login'];
-                    $user->password = $_POST['password'];
-                    $user->email = $_POST['email'];
-                    $user->firstname = $_POST['firstname'];
-                    $user->lastname = $_POST['lastname'];
+                    foreach ($_POST as $key => $value)
+                        $newUser->$key = $value;
 
                     $user->updateUser();
                 }
@@ -47,22 +43,20 @@ class UserController extends AppController
             // Connexion d'un utilisateur
             case "login":
 
-                $currentUser = new User;
-                $currentUser->login = 'IV'; // get login
-                $currentUser->password = 'RP7BLOa'; // get pass
+                $currentUser           = new User;
+                $currentUser->login    = 'IVE';
+                $currentUser->password = 'RP7BLOa';
 
-                $currentUser = $login->loginUser();
-
-                if ($currentUser->idusers) {
-                    $_SESSION['idUser'] = $currentUser->idusers;
-                    $_SESSION['firstName'] = $currentUser->firstname;
-                    $_SESSION['lastName'] = $currentUser->lastname;
+                try {
+                    $currentUser->loginUser();
+                } catch (Exception $e) {
+                    $response = 'Exception reçue : ' .  $e->getMessage() . "\n";
                 }
 
                 // Renvoi sur la page d'accueil
                 echo $this->twig->render('index.html.twig', [
-                    'session' => $_SESSION,
-                    'response' => $response,
+                    'session'  => isset($_SESSION) ? $_SESSION : null,
+                    'response' => isset($response) ? $response : null,
                 ]);
 
                 break;
@@ -70,7 +64,7 @@ class UserController extends AppController
 
         echo $this->twig->render('index.html.twig', [
             'foo' => 'bar',
-            'bar' => 'foo'
+            'bar' => 'foo',
         ]);
     }
 }
