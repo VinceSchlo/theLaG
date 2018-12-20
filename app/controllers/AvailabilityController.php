@@ -14,8 +14,8 @@ class AvailabilityController extends AppController
             case 'availability':
                 if (!empty($_GET['id']))
                 {
-                    $contentId = $_GET['id'];
-                    $availability   = new Availability();
+                    $contentId    = $_GET['id'];
+                    $availability = new Availability();
                     $availability->getAvailability($contentId);
 
                     echo $this->twig->render('index.html.twig', [

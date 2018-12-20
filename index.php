@@ -13,10 +13,10 @@ $routes = [
     'addAvailability'    => 'AvailabilityController',
     'updateAvailability' => 'AvailabilityController',
 
-    'login'      => 'UserController',
-    'disconnect' => 'UserController',
-    'addUser'    => 'UserController',
-    'updateUser' => 'UserController',
+    'login'        => 'UserController',
+    'disconnect'   => 'UserController',
+    'registration' => 'UserController',
+    'updateUser'   => 'UserController',
 
     // 'list_coaching' => 'CoachingController'
     // 'order_coaching' => 'CoachingController',
