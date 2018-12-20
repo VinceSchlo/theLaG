@@ -1,0 +1,22 @@
+#user {
+    text-align: center;
+    .jubotron {
+        height: 25vh;
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #efeee9;
+    }
+    .jeux {
+        border-radius: 180px;
+        height: 70px;
+        width: 70px;
+        margin: 3%;
+    }
+
+    button {
+        width: 20%;
+    }
+
+}

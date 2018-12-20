@@ -1,0 +1,29 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+    <div id="user">
+        <div class="jubotron">
+            <h1>pseudo</h1>
+        </div>
+        <div class="info">
+            <img src="./app/src/img/hs-icon.png" alt="Heatstone" class="jeux">
+            <img src="./app/src/img/wow-icon.png" alt="WoW" class="jeux">
+            <img src="./app/src/img/pokemon-icon.png" alt="Pokemon" class="jeux">
+
+            <blockquote >
+                "Je suis un super joueur"
+            </blockquote>
+            <br>
+            <form action="index.html">
+                <button type="submit"> Ajouter une annonce</button>
+            </form>
+        </div>
+
+    </div>
+
+            {% if response %}{{ response }}{% endif %}
+        </section>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
