@@ -2,23 +2,25 @@
 
 require_once('vendor/thelag/QueryService.php');
 require_once('vendor/thelag/RequestService.php');
+require_once('app/models/User.php');
 
-class Availabilitie extends RequestService
+class Availability extends RequestService
 {
-    public static $table_name = "availabilities";
-    public $pk_field_name = "idavailabilities";
+    protected $table_name = "availabilities";
+    protected $pk_field_name = "idavailabilities";
     public $idavailabilities;
     public $start;
     public $end;
     public $users_idusers;
 
-    public function getAvailabilitie($id)
+    public function getAvailability($id)
     {
-        $availabilitie = new Availabilitie();
+        $this->idavailabilities = $id;
+        $this->hydrate();
 
-        $availabilitie->idavailabilities = $id;
-
-        $availabilitie->hydrate();
+        $this->user = new User();
+        $this->user->idusers = $this->users_idusers;
+        $this->user->hydrate();
     }
 
     public function getAvailabilitiesByDate($date)
@@ -32,7 +34,6 @@ class Availabilitie extends RequestService
         } else {
             return "Aucun résultat";
         }
-    
     }
 
 }

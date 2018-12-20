@@ -2,9 +2,6 @@
 
 abstract class RequestService
 {
-
-    protected static $table_name;
-
     public function hydrate()
     {
         if (empty($this->{$this->pk_field_name})) {
@@ -13,35 +10,54 @@ abstract class RequestService
 
         $query = "SELECT * FROM ".$this->table_name." WHERE ".$this->pk_field_name."=".$this->{$this->pk_field_name};
 
-        $result = myFetchAssoc(($query));
+        $result = myFetchAssoc($query);
 
-        foreach ($result as $key => $value){
-            $this->$key = $result[$key];
+        if (!empty($result))
+        {
+            foreach ($result as $key => $value){
+                $this->$key = $result[$key];
+            }
+        }
+        else
+        {
+            http_response_code(404);
+            die();
         }
     }
 
     public function save()
     {
+        $emptyRemoved = array_filter((array)$this);
+        end($emptyRemoved);
+        $last_key = key($emptyRemoved);
+
         if (empty($this->{$this->pk_field_name}))
         {
-            // $query = "INSERT INTO ".$this->table_name." SET ";
-            // $values = '';
-            // $fields = '';
+            $values = '';
+            $fields = '';
 
-            // foreach ($this as $key => $value) {
-            //     $values .= $value.",";
-            //     $fields .= $key.",";
-            // }
+            foreach ($this as $key => $value)
+            {
+                if (!is_null($value) && !in_array($key, ['pk_field_name', 'table_name', $this->pk_field_name]))
+                {
+                    if ($last_key == $key)
+                    {
+                        $values .= $value;
+                        $fields .= $key;
+                    }
+                    else
+                    {
+                        $values .= $value.",";
+                        $fields .= $key.",";
+                    }
+                }
+            }
 
-            // $this->{$this->pk_field_name};
+            $query = "INSERT INTO ".$this->table_name." (".$fields.") VALUES (".$values.")";
         }
         else
         {
             $query = "UPDATE ".$this->table_name." SET ";
-
-            $emptyRemoved = array_filter((array)$this);
-            end($emptyRemoved);
-            $last_key = key($emptyRemoved);
 
             foreach ($this as $key => $value)
             {
