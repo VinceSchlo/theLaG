@@ -8,6 +8,7 @@ Class AppController
         session_start();
         $this->action = $action;
         $this->currentUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        $this->baseUrl = 'http://' . $_SERVER['SERVER_NAME'];
     }
 
     protected function loadTwig()
@@ -23,6 +24,7 @@ Class AppController
         // Add global parameters to all twig views
         $this->twig->addGlobal('current_url', $this->currentUrl);
         $this->twig->addGlobal('current_action', $this->action);
+        $this->twig->addGlobal('base_url', $this->baseUrl);
 
         if (isset($_SESSION['idusers']))
         {

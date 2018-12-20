@@ -10,7 +10,7 @@ class Session extends RequestService
     public $idsession;
     public $start;
     public $end;
-    public $participant_id;
+    public $partcipant_id;
     public $coach_id;
     public $games_idgames;
     public $availabilities_idavailabilities;

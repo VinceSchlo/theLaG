@@ -7,14 +7,29 @@
         </section>
         <section class="content">
             <h2 class="text-center">Ses disponibilités pour le {{ days[availability.startArray.wday] }} {{ availability.startArray.mday }} {{ months[availability.startArray.mon] }}</h2>
-            <form action="" method="post">
+            
+            <form action="http://localhost:8888/theLag/?action=payment" method="post">
+                <input name="idAvailability" type="hidden" value="{{ availability.idavailabilities }}">
                 {% for i in availability.startArray.hours .. availability.endArray.hours-1 %}
-                    <input type="checkbox" name="availabilityBegin{{i}}" id="availabilityBegin{{i}}">
+                    <input type="checkbox" name="availabilityBegin{{i}}" id="availabilityBegin{{i}}" value="{{i}}">
                     <label for="availabilityBegin{{i}}">{{i}}h - {{i+1}}h</label>
                 {% endfor %}
 
                 <button type="submit">Submit</button>
             </form>
+            <form action="your-server-side-code" method="POST">
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_r3IoFMBamb66g4ULh9pVgOQn"
+                    data-amount="999"
+                    data-name="Demo Site"
+                    data-description="Example charge"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="auto"
+                    data-currency="eur">
+                </script>
+            </form>
+
         </section>
     </div>
 {% endblock %}
