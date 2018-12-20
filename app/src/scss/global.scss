@@ -116,6 +116,42 @@ li {
     }
 }
 
+form {
+
+    input {
+        display: block;
+        margin: 0;
+        padding: 1%;
+        color: inherit;
+        width: 100%;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: 30px;
+        border: none;
+        border-radius: 0.1rem;
+        background: #f5f5f3;
+        &[type="submit"] {
+            background-color: $beige;
+            border: solid 2px $bleu-claire;
+            color: $bleu-claire;
+            width: 50%;
+            font-family: 'Lato';
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            border-radius: 5rem;
+            transition: all .3s ease;
+            margin: 0 auto;
+            &:hover {
+                background-color: $bleu-claire;
+                border: solid 2px $bleu-claire;
+                color: $beige;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
 // END RESET
 
 // TODO: font-family, mixin for font-size
