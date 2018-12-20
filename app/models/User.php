@@ -38,23 +38,4 @@ class User extends RequestService
             throw new Exception('Mauvais login ou mot de passe');
 
     }
-
-    public function addUser(){
-        $query = "INSERT INTO users (login, password, email, firstname, lastname ) 
-                    VALUES ( $this->login, $this->password,  $this->email, $this->firstname, $this->lastname)";
-
-        myQuery($query);
-    }
-
-    public function updateUser($id){
-        $query = "UPDATE table 
-                    SET login = $this->login, 
-                        password = $this->password, 
-                        email = $this->email, 
-                        firstname = $this->firstname, 
-                        lastname = $this->lastname
-                        WHERE idusers = $this->idusers";
-        
-        myQuery($query);
-    }
 }
