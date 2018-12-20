@@ -20,10 +20,19 @@ class BookingController extends AppController
                 $availability = new Availability();
                 $availability->getAvailability($_GET['id']);
 
+                $tabDateStart = strtotime($availability->start);
+                $tabEndStart = strtotime($availability->end);
+
+                $tabDateStart = getdate($tabDateStart);
+                $tabEndStart = getdate($tabEndStart);
+
+                $availability->startArray = $tabDateStart;
+                $availability->endArray = $tabEndStart;
+
                 var_dump($availability);
 
                 echo $this->twig->render('booking/booking.html.twig', [
-                    
+                    'availability' => $availability
                 ]);
 
                 break;
