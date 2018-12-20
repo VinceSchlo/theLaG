@@ -18,7 +18,7 @@ class AvailabilityController extends AppController
                     $availability = new Availability();
                     $availability->getAvailability($contentId);
 
-                    echo $this->twig->render('index.html.twig', [
+                    echo $this->twig->render('booking.html.twig', [
                         'availability'  => $availability,
                     ]);
                 } else {
@@ -40,7 +40,7 @@ class AvailabilityController extends AppController
                 break;
 
             case 'updateAvailability':
-                
+
                 break;
         }
     }
