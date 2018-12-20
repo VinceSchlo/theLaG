@@ -1,3 +1,11 @@
 #booking {
-    
+    .jumbotron {
+        height: 25vh;
+        min-height: 400px;
+        background-color: yellow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $beige;
+    }
 }

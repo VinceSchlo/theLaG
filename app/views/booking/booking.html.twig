@@ -2,18 +2,13 @@
 
 {% block content %}
     <div id="booking">
-        <select name="day" id="day">
-        
-        </select>
-
-        <select name="month" id="month">
-
-        </select>
-
-        <select name="year" id="year">
-
-        </select>
-    <div>
+        <section class="jumbotron">
+            <h1>À deux clicks d'être coaché par {{ coach.login }}</h1>
+        </section>
+        <section class="content">
+            <h2 class="text-center">Ses disponibilités pour le {{ availability.day }}</h2>
+        </section>
+    </div>
 {% endblock %}
 
 {% block footer %}

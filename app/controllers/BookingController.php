@@ -32,7 +32,8 @@ class BookingController extends AppController
                 var_dump($availability);
 
                 echo $this->twig->render('booking/booking.html.twig', [
-                    'availability' => $availability
+                    'availability' => $availability,
+                    'coach' => $availability->user
                 ]);
 
                 break;
