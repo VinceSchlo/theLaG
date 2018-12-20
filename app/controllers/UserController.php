@@ -55,8 +55,8 @@ class UserController extends AppController
 
                 // Renvoi sur la page d'accueil
                 echo $this->twig->render('index.html.twig', [
-                    'session'  => isset($_SESSION) ? $_SESSION : null,
-                    'response' => isset($response) ? $response : null,
+                    'current_session'  => isset($_SESSION) ? $_SESSION : null,
+                    'response'         => isset($response) ? $response : null,
                 ]);
 
                 break;

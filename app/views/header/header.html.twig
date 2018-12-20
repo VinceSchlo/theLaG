@@ -11,7 +11,7 @@
     </nav>
     <aside>
         <a href="./" title="Recherche">loupe</a>
-        {% if session %}
+        {% if current_session %}
             <a href="./?action=login" title="profil">user</a>
         {% else %}
             <a href="./?action=login" title="Connexion">login</a>
