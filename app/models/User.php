@@ -27,18 +27,17 @@ class User extends RequestService
     {
         $query = "SELECT * FROM users WHERE login = '" . $this->login . "' AND password = '" . $this->password . "'";
 
-        $user = myFetchAssoc($query);
+        $result = myFetchAssoc($query);
 
-        if ($user != null){
-            $_SESSION['idUser'] = $user['idusers'];
-            $_SESSION['login'] = $user['login'];
-            $_SESSION['firstname'] = $user['firstname'];
-            $_SESSION['lastname'] = $user['lastname'];
+        if ($result != null)
+        {
+            foreach ($result as $key => $value)
+                $_SESSION[$key] = $value;
 
-            return "Bienvenue";
-        } else {
-            return "Mauvais login ou mot de passe";
+            return 'Succès';
         }
+        else
+            throw new Exception('Mauvais login ou mot de passe');
 
     }
 
