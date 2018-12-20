@@ -8,12 +8,17 @@
         <section class="content">
             <h2 class="text-center">Ses disponibilités pour le {{ days[availability.startArray.wday] }} {{ availability.startArray.mday }} {{ months[availability.startArray.mon] }}</h2>
             <form action="" method="post">
-                {% for i in availability.startArray.hours .. availability.endArray.hours-1 %}
-                    <input type="checkbox" name="availabilityBegin{{i}}" id="availabilityBegin{{i}}">
-                    <label for="availabilityBegin{{i}}">{{i}}h - {{i+1}}h</label>
-                {% endfor %}
-
-                <button type="submit">Submit</button>
+                <div class="form-item-container">
+                    {% for i in availability.startArray.hours .. availability.endArray.hours-1 %}
+                        <div class="form-item">
+                            <input type="checkbox" name="availabilityBegin{{i}}" id="availabilityBegin{{i}}">
+                            <label for="availabilityBegin{{i}}">{{i}}h - {{i+1}}h</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="form-button-container text-center">
+                    <button type="submit">Submit</button>
+                </div>
             </form>
         </section>
     </div>
