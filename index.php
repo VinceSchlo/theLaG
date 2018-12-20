@@ -2,8 +2,9 @@
 // Definition des routes
 $routes = [
     'home' => 'HomeController',
+
     'availabilities' => 'BookingController',
-    'booking' => 'BookingController',
+    'booking'        => 'BookingController',
 
     'availability'       => 'AvailabilityController',
     'addAvailability'    => 'AvailabilityController',
