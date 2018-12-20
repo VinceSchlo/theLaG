@@ -3,7 +3,7 @@
         <img src="./app/src/img/LogoNoirTransparent.png" alt="Logo The Lag" class="header-logo">
     </a>
     <nav>
-        <a href="./" {% if current_action == 'null' %}class="active"{% endif %}>Acceuil</a>
+        <a href="./" {% if current_action == 'home' %}class="active"{% endif %}>Acceuil</a>
         <a href="./?action=availabilities" {% if current_action == 'availabilities' %}class="active"{% endif %}>Annonces</a>
         <a href="./?action=faq" {% if current_action == 'faq' %}class="active"{% endif %}>FAQ</a>
         <a href="./?action=games" {% if current_action == 'games' %}class="active"{% endif %}>Jeux</a>
