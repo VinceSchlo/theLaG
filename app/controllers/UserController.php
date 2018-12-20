@@ -13,8 +13,12 @@ class UserController extends AppController
         switch ($this->action)
         {
             case "user":
-                echo $this->twig->render('user/user.html.twig', [
+                $contentId = $_GET['id'];
+                $user      = new User();
+                $user->getUser($contentId);
 
+                echo $this->twig->render('user/user.html.twig', [
+                    'user' => $user,
                 ]);
                 break;
             // Add new user
@@ -41,7 +45,11 @@ class UserController extends AppController
                         }
 
                         if ($hasError === false)
+                        {
                             $newUser->save();
+                            header('Location: index.php');
+                            die();
+                        }
                         else
                             $response = 'Veuillez remplir tous les champs';
 

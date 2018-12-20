@@ -13,11 +13,9 @@ class Game extends RequestService
 
     public function getGame($id)
     {
-        $game = new Game();
+        $this->idType = $id;
 
-        $typeGame->idType = $id;
-
-        $typeGame->hydrate();
+        $this->hydrate();
     }
 
 }
