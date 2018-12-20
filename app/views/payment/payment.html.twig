@@ -1,0 +1,45 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+<div id="booking">
+        <section class="jumbotron">
+            <h1>À un clicks d'être coaché par {{ availability.user.login }}</h1>
+        </section>
+        <section class="content">
+            <h2 class="text-center">Voici les dispo que vous avez choisis pour le {{ days[availability.startArray.wday] }} {{ availability.startArray.mday }} {{ months[availability.startArray.mon] }}</h2>
+
+            {% if paiement is defined %}
+            
+            <p>{{ paiement }}</p>
+
+            {% else %}
+
+            {% for tranche in allTranches %}
+                <div>
+                    <p>{{ tranche.start }}</p>
+                    <p>{{ tranche.end }}</p>
+                </div>
+            {% endfor %}
+
+            <form action="" method="POST">
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_r3IoFMBamb66g4ULh9pVgOQn"
+                    data-amount="999"
+                    data-name="Demo Site"
+                    data-description="Example charge"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="auto"
+                    data-currency="eur">
+                </script>
+            </form>
+
+            {% endif %}
+
+        </section>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

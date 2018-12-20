@@ -16,24 +16,6 @@ class BookingController extends AppController
             // Ajout d'un nouvel utlisateur
             case 'booking': 
 
-                if (isset($_POST['stripeToken'])){
-
-                    \Stripe\Stripe::setApiKey("sk_test_VLDXc3I136Z4bWuq063V014f");
-
-                    // Token is created using Checkout or Elements!
-                    // Get the payment token ID submitted by the form:
-                    $token = $_POST['stripeToken'];
-                    
-                    $charge = \Stripe\Charge::create([
-                        'amount' => 999,
-                        'currency' => 'usd',
-                        'description' => 'Example charge',
-                        'source' => $token,
-                    ]);
-
-                }
-
-
                 $availability = new Availability();
                 $availability->getAvailability($_GET['id']);
 
@@ -113,43 +95,105 @@ class BookingController extends AppController
                 
                 case 'payment':
 
-                if ($_POST['idAvailability']) {
+                // if ($_POST['idAvailability']) {
 
-                    $allDates = [];
+                    // $allDates = [];
 
-                    foreach ($_POST as $key => $value) {
-                        if ($key != 'idAvailability') {
-                            $allDates[] = $value;
-                        }
-                    }
+                    // foreach ($_POST as $key => $value) {
+                    //     if ($key != 'idAvailability') {
+                    //         $allDates[] = $value;
+                    //     }
+                    // }
 
-                    $availability = new Availability();
-                    $availability->getAvailability($_POST['idAvailability']);
+                    // $availability = new Availability();
+                    // $availability->getAvailability($_POST['idAvailability']);
 
-                    $day = substr($availability->start, 0, 10);
-                    var_dump($allDates);
+                    // $day = substr($availability->start, 0, 10);
+                    // var_dump($availability);
 
-                    foreach ($allDates as $hour){
+                    // foreach ($allDates as $hour){
 
+                    //     $allTranches[]['start'] = $day . " " . $hour . ":00:00";
+                    //     $dateplus = $hour + 1;
+                    //     $allTranches[]['end'] = $day . " " . $dateplus . ":00:00";
+
+                    // }    
+
+                    if (isset($_POST['stripeToken'])){
+
+                        \Stripe\Stripe::setApiKey("sk_test_VLDXc3I136Z4bWuq063V014f");
+
+                        // Token is created using Checkout or Elements!
+                        // Get the payment token ID submitted by the form:
+                        $token = $_POST['stripeToken'];
                         
-                        $session = new Session();
-                        $session->start = $day . " " . $hour . ":00:00";
-                        $dateplus = $hour + 1;
-                        var_dump($day . " " . $hour . ":00:00");
-                        var_dump($day . " " . $dateplus . ":00:00");
-                        var_dump($_SESSION['idusers']);
-                        $session->end = $day . " " . $dateplus. ":00:00";
-                        $session->partcipant_id = $_SESSION['idusers'];
-                        $session->coach_id = $availability->users_idusers;
-                        // $session->$games_idgames = ;
-                        $session->availabilities_idavailabilities = $_POST['idAvailability'];
+                        $charge = \Stripe\Charge::create([
+                            'amount' => 999,
+                            'currency' => 'usd',
+                            'description' => 'Example charge',
+                            'source' => $token,
+                        ]);
 
-                        $session->save();
+                        if ($charge->status == "succeeded") {
+                            $reponse = "Votre paiement a été accepté";
+                        } else {
+                            $reponse = "Votre paiement a été refusé";
+                        }
+
+                        echo $this->twig->render('payment/payment.html.twig', [
+                            'paiement' => $reponse,
+                        ]);
+
+                        break;
+
+                    } elseif ($_POST['idAvailability']) {
+                        $allDates = [];
+
+                        foreach ($_POST as $key => $value) {
+                            if ($key != 'idAvailability') {
+                                $allDates[] = $value;
+                            }
+                        }
+
+                        $availability = new Availability();
+                        $availability->getAvailability($_POST['idAvailability']);
+
+                        $day = substr($availability->start, 0, 10);
+                        // var_dump($availability);
+
+                        foreach ($allDates as $hour){
+
+                            $allTranches[]['start'] = $day . " " . $hour . ":00:00";
+                            $dateplus = $hour + 1;
+                            $allTranches[]['end'] = $day . " " . $dateplus . ":00:00";
+
+                        }    
+
+                        echo $this->twig->render('payment/payment.html.twig', [
+                            'allTranches' => $allTranches,
+                            'availability' => $availability,
+                        ]);
+
+                        break;
                     }
+                        // $session = new Session();
+                        // $session->start = $day . " " . $hour . ":00:00";
+                        // $dateplus = $hour + 1;
+                        // $session->end = $day . " " . $dateplus. ":00:00";
+                        // $session->partcipant_id = $_SESSION['idusers'];
+                        // $session->coach_id = $availability->users_idusers;
+                        // // $session->$games_idgames = ;
+                        // $session->availabilities_idavailabilities = $_POST['idAvailability'];
 
+                        // $session->save();
+                    
 
-                    var_dump($allDates);
-                }
+                    echo $this->twig->render('payment/payment.html.twig', [
+                        'allTranches' => $allTranches,
+                        'availability' => $availability,
+                    ]);
+                    // var_dump($allDates);
+                // }
 
                 break;
         }
