@@ -28,4 +28,10 @@ The project uses Sass and Babel, to run CSS & JS compilations on save you'll nee
 npm run dev
 ```
 
+###If style is not loaded
+
+Your /app/build/css folder may be empty
+
+Temporary fix : Let 'npm run dev' running and save any scss file of the project, it will build /app/build/css/main.min.css
+
 Now you're free to go 🤙🏼

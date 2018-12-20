@@ -3,8 +3,10 @@
 $routes = [
     'home' => 'HomeController',
     'login' => 'UserController',
-    // 'order_coaching' => 'CoachingController',
+    'availabilities' => 'BookingController',
+    'booking' => 'BookingController'
     // 'list_coaching' => 'CoachingController'
+    // 'order_coaching' => 'CoachingController',
 ];
 
 // Initialisation home

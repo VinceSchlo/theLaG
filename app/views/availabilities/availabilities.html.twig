@@ -1,0 +1,42 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+    <div id="availabilities">
+
+        <form action="" method="get">
+            <select name="day" id="day">
+                {% for day in days %}
+                    {% if nowDate["mday"] == day %}
+                        <option value="{{ day }}" selected>{{ day }}</option>
+                    {% else %}
+                        <option value="{{ day }}">{{ day }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            
+            <select name="month" id="month">
+                {% for month in months %}
+                    {% if nowDate["mon"] == month %}
+                        <option value="{{ month }}" selected>{{ month }}</option>
+                    {% else %}
+                        <option value="{{ month }}">{{ month }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+    
+            <select name="year" id="year">
+                {% for year in years %}
+                    {% if nowDate["year"] == year %}
+                        <option value="{{ year }}" selected>{{ year }}</option>
+                    {% else %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </form>
+    <div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,25 @@
+@mixin bp($point) {
+
+    $smartphone: "(max-width: 600px)";
+    $tablets: "(max-width: 1250px)";
+    $mediumScreen: "(max-width: 1600px)";
+
+    @if $point==smartphone {
+        @media #{$smartphone} {
+            @content;
+        }
+    }
+
+    @else if $point==tablets {
+        @media #{$tablets} {
+            @content;
+        }
+    }
+
+    @else if $point==mediumScreen {
+        @media #{$mediumScreen} {
+            @content;
+        }
+    }
+
+}
