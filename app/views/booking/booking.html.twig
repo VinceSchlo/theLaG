@@ -10,10 +10,9 @@
             <form action="" method="post">
                 <div class="form-item-container">
                     {% for i in availability.startArray.hours .. availability.endArray.hours-1 %}
-                        <div class="form-item">
-                            <input type="checkbox" name="availabilityBegin{{i}}" id="availabilityBegin{{i}}">
-                            <label for="availabilityBegin{{i}}">{{i}}h - {{i+1}}h</label>
-                        </div>
+                        <label for="availabilityBegin{{i}}" class="form-item">
+                            <input type="checkbox" name="availabilityBegin{{i}}" id="availabilityBegin{{i}}"> {{i}}h - {{i+1}}h
+                        </label>
                     {% endfor %}
                 </div>
                 <div class="form-button-container text-center">
