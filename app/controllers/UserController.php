@@ -12,18 +12,44 @@ class UserController extends AppController
 
         switch ($this->action)
         {
+            case "user":
+                echo $this->twig->render('user/user.html.twig', [
+
+                ]);
+                break;
             // Add new user
-            case "registration":
-
-                if (!empty($_POST))
+            case "register":
+                if (!isset($_SESSION['idusers']))
                 {
-                    $newUser = new User();
+                    if (!empty($_POST))
+                    {
+                        $newUser  = new User();
+                        $hasError = false;
 
-                    foreach ($_POST as $key => $value)
-                        $newUser->$key = $value;
+                        if ($_POST['password'] != $_POST['password_confirm']) {
+                            $hasError = true;
+                            $reponse  = 'Les deux mots passes doivent être identiques';
+                        }
 
-                    $newUser->save();
+                        foreach ($_POST as $key => $value)
+                        {
+                            if (empty($value)) {
+                                $hasError = true;
+                            } elseif(!in_array($key, ['password_confirm'])) {
+                                $newUser->$key = $value;
+                            }
+                        }
+
+                        if ($hasError === false)
+                            $newUser->save();
+                        else
+                            $response = 'Veuillez remplir tous les champs';
+
+                    }
                 }
+                echo $this->twig->render('register/register.html.twig', [
+                    'response' => isset($response) ? $response : null,
+                ]);
                 break;
 
             // Changement des informations ( + suppression ? )
@@ -37,9 +63,7 @@ class UserController extends AppController
 
                     $user->save();
                 }
-
                 break;
-
             // Connexion d'un utilisateur
             case "login":
                 if (!isset($_SESSION['idusers']))
@@ -72,8 +96,8 @@ class UserController extends AppController
                     header('Location: index.php');
                     exit;
                 }
-
                 break;
+
             case 'disconnect':
                 if (isset($_SESSION['idusers']))
                     session_destroy();

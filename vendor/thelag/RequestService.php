@@ -38,22 +38,25 @@ abstract class RequestService
 
             foreach ($this as $key => $value)
             {
+                // var_dump($key);
+                // var_dump($value);
                 if (!is_null($value) && !in_array($key, ['pk_field_name', 'table_name', $this->pk_field_name]))
                 {
                     if ($last_key == $key)
                     {
-                        $values .= $value;
+                        $values .= "'".$value."'";
                         $fields .= $key;
                     }
                     else
                     {
-                        $values .= $value.",";
+                        $values .= "'".$value."',";
                         $fields .= $key.",";
                     }
                 }
             }
 
             $query = "INSERT INTO ".$this->table_name." (".$fields.") VALUES (".$values.")";
+            // var_dump($query);
         }
         else
         {
