@@ -10,7 +10,8 @@ class UserController extends AppController
     {
         $this->loadTwig();
 
-        switch ($this->action) {
+        switch ($this->action)
+        {
             // Add new user
             case "addUser":
 
@@ -27,8 +28,7 @@ class UserController extends AppController
 
             // Changement des informations ( + suppression ? )
             case "updateUser":
-
-                if (!empty($_POST['update']))
+                if (isset($_SESSION['idusers']))
                 {
                     $user = new User();
 
@@ -42,24 +42,38 @@ class UserController extends AppController
 
             // Connexion d'un utilisateur
             case "login":
+                if (!isset($_SESSION['idusers']))
+                {
+                    if(isset($_POST))
+                    {
+                        $currentUser           = new User;
+                        $currentUser->login    = 'IVE';
+                        $currentUser->password = 'RP7BLOa';
 
-                $currentUser           = new User;
-                $currentUser->login    = 'IVE';
-                $currentUser->password = 'RP7BLOa';
+                        try {
+                            $currentUser->loginUser();
+                        } catch (Exception $e) {
+                            $response = 'Exception reçue : ' .  $e->getMessage() . "\n";
+                        }
+                    }
+                    else
+                        $response = 'Veuillez completer les champs';
 
-                try {
-                    $currentUser->loginUser();
-                } catch (Exception $e) {
-                    $response = 'Exception reçue : ' .  $e->getMessage() . "\n";
+                    echo $this->twig->render('login.html.twig', [
+                        'response' => isset($response) ? $response : null,
+                    ]);
                 }
 
-                // Renvoi sur la page d'accueil
-                echo $this->twig->render('index.html.twig', [
-                    'session'  => isset($_SESSION) ? $_SESSION : null,
-                    'response' => isset($response) ? $response : null,
-                ]);
-
+                break;
+            case 'disconnect':
+                if (isset($_SESSION['idusers']))
+                    session_destroy();
                 break;
         }
+
+        echo $this->twig->render('home/home.html.twig', [
+            'foo' => 'bar',
+            'bar' => 'foo'
+        ]);
     }
 }

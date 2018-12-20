@@ -2,7 +2,6 @@
 // Definition des routes
 $routes = [
     'home' => 'HomeController',
-    'login' => 'UserController',
     'availabilities' => 'BookingController',
     'booking' => 'BookingController',
     'login' => 'LoginController',
@@ -10,6 +9,11 @@ $routes = [
     'availability'       => 'AvailabilityController',
     'addAvailability'    => 'AvailabilityController',
     'updateAvailability' => 'AvailabilityController',
+
+    'login'      => 'UserController',
+    'disconnect' => 'UserController',
+    'addUser'    => 'UserController',
+    'updateUser' => 'UserController',
 
     // 'list_coaching' => 'CoachingController'
     // 'order_coaching' => 'CoachingController',

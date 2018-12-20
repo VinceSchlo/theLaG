@@ -37,7 +37,10 @@ class AvailabilityController extends AppController
 
                     $newAvailability->save();
                 }
+                break;
 
+            case 'updateAvailability':
+                
                 break;
         }
     }

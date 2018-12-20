@@ -11,6 +11,8 @@ Class AppController
 
     protected function loadTwig()
     {
+        session_start();
+
         $loader = new Twig_Loader_Filesystem('app/views/');
         $params = [
             'cache'       => 'cache',
@@ -22,5 +24,10 @@ Class AppController
         // Add global parameters to all twig views
         $this->twig->addGlobal('current_url', $this->currentUrl);
         $this->twig->addGlobal('current_action', $this->action);
+
+        if (!isset($_SESSION['idusers']))
+        {
+            $this->twig->addGlobal('current_session', $_SESSION);
+        }
     }
 }
