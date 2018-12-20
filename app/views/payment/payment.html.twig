@@ -9,7 +9,7 @@
             <h2 class="text-center">Voici les dispo que vous avez choisis pour le {{ days[availability.startArray.wday] }} {{ availability.startArray.mday }} {{ months[availability.startArray.mon] }}</h2>
 
             {% if paiement is defined %}
-            
+
             <p>{{ paiement }}</p>
 
             {% else %}
@@ -22,6 +22,8 @@
             {% endfor %}
 
             <form action="" method="POST">
+                {# <input name="allTranches" type="hidden" value="{{ allTranches }}"> #}
+                {# <input name="availability" type="hidden" value="{{ availability }}"> #}
                 <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="pk_test_r3IoFMBamb66g4ULh9pVgOQn"

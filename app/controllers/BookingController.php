@@ -134,6 +134,12 @@ class BookingController extends AppController
                             'source' => $token,
                         ]);
 
+
+                            var_dump($_POST['allTranches']);
+                            var_dump($_POST['availability']);
+
+
+
                         if ($charge->status == "succeeded") {
                             $reponse = "Votre paiement a été accepté";
                         } else {
